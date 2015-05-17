@@ -1,0 +1,24 @@
+{
+  "name": "codeigniter-standard",
+  "version": "1.0.0",
+  "description": "Standard project for CodeIgniter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namnv609/codeigniter-standard.git"
+  },
+  "keywords": [
+    "codeigniter",
+    "standard",
+    "project"
+  ],
+  "author": "NamNV609",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namnv609/codeigniter-standard/issues"
+  },
+  "homepage": "https://github.com/namnv609/codeigniter-standard#readme"
+}
