@@ -9,3 +9,6 @@ application/logs/*
 !application/logs/.htaccess
 
 /node_modules
+npm-debug.log
+.htaccess
+/application/config/database.php

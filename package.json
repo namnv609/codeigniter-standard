@@ -4,7 +4,8 @@
   "description": "Standard project for CodeIgniter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node_modules/.bin/gulp",
+    "fix-watch": "echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/namnv609/codeigniter-standard/issues"
   },
-  "homepage": "https://github.com/namnv609/codeigniter-standard#readme"
+  "homepage": "https://github.com/namnv609/codeigniter-standard#readme",
+  "dependencies": {
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-compass": "^2.0.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-watch": "^4.2.4",
+    "require-dir": "^0.3.0"
+  }
 }
