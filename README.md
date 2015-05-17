@@ -38,5 +38,8 @@
 * Change two files:
     * ```cp ./application/config/database.default.php ./application/config/database.php```
     * ```cp .htaccess.default .htaccess```
+* Create folder __twig__ in __application/cache__ and give it write permission (On Linux)
+    * ```mkdir -p application/cache/twig```
+    * ```chmod o+w application/cache/twig```
 * Run ```npm install``` to install node modules (run this command under root permission in Ubuntu)
 * Run ```npm run dev``` and happy coding :grin:
