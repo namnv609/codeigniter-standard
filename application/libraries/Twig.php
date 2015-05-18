@@ -41,8 +41,22 @@ class Twig
         $template = $this->_twig->loadTemplate($template);
         return $template->render($data);
     }
-    public function display($template, $data = array())
+    public function display($data = array(), $template = "")
     {
+        $class_name = $this->CI->router->class;
+        $method_name = $this->CI->router->method;
+        $dir_name = $this->CI->router->directory;
+
+        if ($method_name === $class_name) {
+            $method_name = "index";
+        }
+
+        $template_path = sprintf("%s%s/%s.twig", $dir_name, $class_name, $method_name);
+
+        if ($template === "" || $template === null) {
+            $template = $template_path;
+        }
+
         $template = $this->_twig->loadTemplate($template);
         /* elapsed_time and memory_usage */
         $data['elapsed_time'] = $this
