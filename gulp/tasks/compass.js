@@ -6,9 +6,9 @@ var gulp = require("gulp"),
 
 gulp.task("compass", function() {
     gulp.src([
-        config.src + "/**/*.sass",
-        "!" + config.src + "/common/**/*.sass",
-        "!" + config.src + "/components/**/*.sass"
+        config.src + "/**/*.s*ss",
+        "!" + config.src + "/common/**/*.s*ss",
+        "!" + config.src + "/components/**/*.s*ss"
     ]).pipe(compass({
         config_file: config.configFile,
         sass: config.src,

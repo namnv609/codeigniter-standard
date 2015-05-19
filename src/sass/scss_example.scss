@@ -1,0 +1,10 @@
+@import "compass";
+@import "./common/colors";
+
+body {
+    background: $mainColor;
+    #wrapper {
+        @include box-shadow(2px 2px 2px $textColor);
+        @include border-radius(50%);
+    }
+}

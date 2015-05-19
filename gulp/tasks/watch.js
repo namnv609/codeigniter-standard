@@ -9,4 +9,7 @@ gulp.task("watch", function() {
     watch(config.coffee.watch, function() {
         gulp.start("coffee");
     });
+    watch(config.less.watch, function() {
+        gulp.start("less");
+    });
 });

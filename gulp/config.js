@@ -7,7 +7,7 @@ module.exports = {
         dest: dest + "/css",
         configFile: src + "/sass/config.rb",
         get watch() {
-            return this.src + "/**/*.sass"
+            return this.src + "/**/*.s*ss"
         }
     },
     coffee: {
@@ -15,6 +15,13 @@ module.exports = {
         dest: dest + "/js",
         get watch() {
             return this.src + "/**/*.coffee"
+        }
+    },
+    less: {
+        src: src + "/less",
+        dest: dest + "/css",
+        get watch() {
+            return this.src + "/**/*.less"
         }
     }
 }
