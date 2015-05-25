@@ -9,7 +9,7 @@ class Twig
      * Constructor
      *
      */
-    function __construct($debug = false)
+    function __construct($debug = true)
     {
         $this->CI =& get_instance();
         $this->CI->config->load('twig');
@@ -26,6 +26,8 @@ class Twig
             'debug' => $debug,
         ));
 
+        $this->_twig->addExtension(new Twig_Extension_Debug());
+
         foreach(get_defined_functions() as $functions) {
             foreach($functions as $function) {
                 $this->_twig->addFunction($function, new Twig_Function_Function($function));
@@ -34,7 +36,13 @@ class Twig
     }
     public function add_function($name)
     {
-        $this->_twig->addFunction($name, new Twig_Function_Function($name));
+        if (is_array($name)) {
+            foreach ($name as $fnName) {
+                $this->_twig->addFunction($fnName, new Twig_Function_Function($fnName));
+            }
+        } else {
+            $this->_twig->addFunction($name, new Twig_Function_Function($name));
+        }
     }
     public function render($template, $data = array())
     {

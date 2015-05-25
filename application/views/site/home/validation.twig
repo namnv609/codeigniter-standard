@@ -1,0 +1,9 @@
+{% extends "./site/layouts/index.twig" %}
+
+{% block content %}
+    {{ validation_errors() }}
+    <form action="{{ base_url() }}validation" method="POST">
+        <input type="text" name="txtName" value='{{ set_value('txtName') }}' />
+        {{ form_submit("submit", "Submit") | raw }}
+    </form>
+{% endblock %}

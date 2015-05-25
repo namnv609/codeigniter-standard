@@ -41,6 +41,7 @@
 $route['default_controller'] = "site/home";
 $route['about'] = "site/home/about";
 $route['hello/(:any)'] = "site/home/hello/$1";
+$route['validation'] = "site/home/validation";
 $route['404_override'] = '';
 
 
