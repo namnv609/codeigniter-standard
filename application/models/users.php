@@ -12,6 +12,7 @@ class Users extends MY_Model
             )
         )
     );
+    public $tableName = "users";
 
     public function __construct()
     {
