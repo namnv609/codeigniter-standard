@@ -14,6 +14,30 @@ class MY_Model extends CI_Model
         parent::__construct();
     }
 
+    function __call($methodName, $args)
+    {
+        $findType = 'findAll';
+        $field = '';
+        $condition = array();
+
+        if (strpos($methodName, 'findAllBy') === 0) {
+            $field = uncamelize(str_replace('findAllBy', '', $methodName));
+        } elseif (strpos($methodName, 'findBy') === 0) {
+            $field = uncamelize(str_replace('findBy', '', $methodName));
+            $findType = 'findBy';
+        }
+
+        $conditions = array($field => array_shift($args));
+        array_unshift($args, $conditions);
+
+        return call_user_func_array(array($this, $findType), $args);
+    }
+
+    /**
+     * Validate by property validates in model
+     *
+     * @return bool Validate status
+     */
     public function validation()
     {
         $validation_rules = array();
@@ -42,6 +66,13 @@ class MY_Model extends CI_Model
         return $this->form_validation->run();
     }
 
+    /**
+     * Find is the multifunctional workhorse of all model data-retrieval functions
+     *
+     * @param string $type Find type (all|first|count)
+     * @param array $params Array find params (find conditions, limit, ...)
+     * @return array Result array
+     */
     public function find($type, $params = array())
     {
         $fields = "*";
@@ -135,5 +166,59 @@ class MY_Model extends CI_Model
         }
 
         return $result;
+    }
+
+    /**
+     * Find all by <FieldName>
+     *
+     * @param array $conditions Find conditions
+     * @param array $fields Field list want to retrieve
+     * @param array $order List order fields,
+     * @param int $limit Limit number rows
+     * @param int $offset Offset row start
+     * @return array Result array
+     */
+    public function findAll($conditions = array(), $fields = array(), $order = array(), $limit = null, $offset = null)
+    {
+        $field = key($conditions);
+        $params["conditions"] = array(
+            $field => $conditions[$field]
+        );
+
+        if (count($fields) > 0) {
+            $params["fields"] = $fields;
+        }
+
+        if (count($order) > 0) {
+            $params["order"] = $order;
+        }
+
+        if ($limit !== null && is_numeric($limit)) {
+            $params["limit"] = $limit;
+        }
+
+        if ($offset !== null && is_numeric($offset)) {
+            $params["offset"] = $offset;
+        }
+
+        return $this->find('all', $params);
+    }
+
+    public function findBy($conditions = array(), $fields = array(), $order = array())
+    {
+        $field = key($conditions);
+        $params["conditions"] = array(
+            $field => $conditions[$field]
+        );
+
+        if (count($fields) > 0) {
+            $params["fields"] = $fields;
+        }
+
+        if (count($order) > 0) {
+            $params["order"] = $order;
+        }
+
+        return $this->find('first', $params);
     }
 }

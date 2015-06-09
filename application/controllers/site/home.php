@@ -42,33 +42,36 @@ class Home extends MY_Controller
 
     public function model()
     {
-        $users = $this->Users->find("all", array(
-            "fields" => array("users.*", "Posts.title"),
-            "order" => array("users.id DESC"),
-            "joins" => array(
-                array(
-                    "table" => "posts",
-                    "alias" => "Posts",
-                    "type"  => "INNER",
-                    "conditions" => array(
-                        "Posts.user_id = users.id"
-                    )
-                )
-            ),
-            "conditions" => array(
-                // "name LIKE" => "user",
-                // "OR" => array(
-                //     "Posts.title" => "dolor sit amet",
-                //     "users.id" => 1
-                // ),
-                // "IN" => array(
-                //     "users.id" => array(1, 2)
-                // ),
-                "NOT IN" => array(
-                    "users.id" => array(2)
-                ),
-            )
-        ));
+        // $users = $this->Users->find("all", array(
+        //     "fields" => array("users.*", "Posts.title"),
+        //     "order" => array("users.id DESC"),
+        //     "joins" => array(
+        //         array(
+        //             "table" => "posts",
+        //             "alias" => "Posts",
+        //             "type"  => "INNER",
+        //             "conditions" => array(
+        //                 "Posts.user_id = users.id"
+        //             )
+        //         )
+        //     ),
+        //     "conditions" => array(
+        //         // "name LIKE" => "user",
+        //         // "OR" => array(
+        //         //     "Posts.title" => "dolor sit amet",
+        //         //     "users.id" => 1
+        //         // ),
+        //         // "IN" => array(
+        //         //     "users.id" => array(1, 2)
+        //         // ),
+        //         "NOT IN" => array(
+        //             "users.id" => array(2)
+        //         ),
+        //     )
+        // ));
+
+        // $users = $this->Users->findAllByPostCode('10000', array('id', 'email'), array('id desc'), 1, 1);
+        $users = $this->Users->findByName('user');
 
         echo "<pre>";
         var_dump($users);
